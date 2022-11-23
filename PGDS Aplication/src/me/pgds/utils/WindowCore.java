@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 
 import lombok.Getter;
 import me.pgds.Core;
+import me.pgds.imgs.ImageAPI;
 
 @Getter
 public class WindowCore extends JFrame {
@@ -20,6 +21,7 @@ public class WindowCore extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setBackground(Color.GRAY.darker());
 		setTitle("PEGADAS PRÉ-MOLDADOS");
+		setIconImage(ImageAPI.get("icon_core.png"));
 	}
 	
 	public WindowCore init() {

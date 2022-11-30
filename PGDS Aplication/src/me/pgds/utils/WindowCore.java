@@ -10,6 +10,7 @@ import lombok.Getter;
 import me.pgds.imgs.ImageAPI;
 import me.pgds.objects.utils.Button;
 import me.pgds.utils.frames.MainFrame;
+import me.pgds.utils.frames.main.Frame;
 
 @Getter
 public class WindowCore extends JFrame {
@@ -18,6 +19,8 @@ public class WindowCore extends JFrame {
 	
 	@Getter
 	private static WindowCore frame;
+	
+	private Frame main;
 	
 	public WindowCore() {
 		frame = this;
@@ -28,18 +31,9 @@ public class WindowCore extends JFrame {
 		getContentPane().setBackground(Color.GRAY.darker());
 		setTitle("PEGADAS PRÉ-MOLDADOS");
 		setIconImage(ImageAPI.get("icon_core.png"));
-		
-		new MainFrame(()->{
-			clear();
-			Button button = new Button("Botão Teste", Color.YELLOW.darker().darker(), Color.white, 100, 25, 2, 2);
-			button.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					clear();
-				}
-			});
+		main = new MainFrame(()->{
+			
 		}).run();
-		
 	}
 	
 	public WindowCore init() {
@@ -49,7 +43,20 @@ public class WindowCore extends JFrame {
 	}
 	
 	public void update() {
+		frame.revalidate();
 		frame.repaint();
+		frame.getContentPane().repaint();
+	}
+	
+	public void defaultIcons() {
+		
+		new Button("Nova Entrada", Color.YELLOW.darker().darker().darker(), Color.white, 200, 25, 2, 2).addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				main.run();
+			}
+		});
+		
 	}
 	
 	public void clear() {

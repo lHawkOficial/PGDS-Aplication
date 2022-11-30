@@ -1,6 +1,7 @@
 package me.pgds.utils.frames.main;
 
 import lombok.Getter;
+import me.pgds.utils.WindowCore;
 
 @Getter
 public class Frame implements FrameImplements {
@@ -12,8 +13,15 @@ public class Frame implements FrameImplements {
 	}
 	
 	@Override
-	public void run() {
-		new Thread(()->runnable.run()).run();
+	public Frame run() {
+		new Thread(()-> {
+			WindowCore core = WindowCore.getFrame();
+			core.clear();
+			core.defaultIcons();
+			runnable.run();
+			core.update();
+		}).run();
+		return this;
 	}
 	
 }

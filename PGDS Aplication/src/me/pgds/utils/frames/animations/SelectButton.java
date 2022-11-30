@@ -1,6 +1,7 @@
 package me.pgds.utils.frames.animations;
 
 import java.awt.Color;
+
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.MouseEvent;
@@ -13,7 +14,7 @@ import lombok.Getter;
 @Getter
 public class SelectButton implements MouseListener {
 	
-	private JComponent component; 
+	private JComponent component;
 	
 	private Dimension size;
 	private Color background, foreground;

@@ -1,7 +1,7 @@
 package me.pgds.utils.frames.main;
 
 import lombok.Getter;
-import me.pgds.objects.Manager;
+import me.pgds.objects.managers.Manager;
 import me.pgds.objects.utils.Button;
 import me.pgds.utils.WindowCore;
 

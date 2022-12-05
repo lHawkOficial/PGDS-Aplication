@@ -22,8 +22,8 @@ public class Text extends JTextPane {
 		setFont(new Font("Arial", 0, sizeFont));
 		setText(text);
 		setEditable(editable);
-		setForeground(foreground);
-		setBackground(background);
+		if (foreground != null) setForeground(foreground);
+		if (background != null) setBackground(background);
 		setAutoscrolls(false);
 		setVisible(true);
 		core.update();

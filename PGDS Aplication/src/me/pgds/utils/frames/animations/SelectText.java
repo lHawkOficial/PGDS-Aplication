@@ -44,12 +44,10 @@ public class SelectText implements MouseListener {
 	public void mouseEntered(MouseEvent e) {
 		component.setBackground(component.getBackground().darker());
 		component.setForeground(component.getForeground().brighter());
-		component.setSize(component.getWidth()+2,component.getHeight()+2);
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		component.setSize(size);
 		component.setForeground(foreground);
 		component.setBackground(background);
 	}

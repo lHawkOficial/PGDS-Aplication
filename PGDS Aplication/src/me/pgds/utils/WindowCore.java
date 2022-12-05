@@ -3,34 +3,43 @@ package me.pgds.utils;
 import java.awt.Color;
 
 
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Timer;
 
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 import lombok.Getter;
 import lombok.Setter;
 import me.pgds.imgs.ImageAPI;
-import me.pgds.objects.List;
-import me.pgds.objects.Manager;
+import me.pgds.objects.managers.Manager;
 import me.pgds.objects.utils.Button;
 import me.pgds.objects.utils.Draw;
+import me.pgds.objects.utils.List;
 import me.pgds.objects.utils.Text;
 import me.pgds.utils.frames.ClientFrame;
 import me.pgds.utils.frames.EntryFrame;
 import me.pgds.utils.frames.ExitFrame;
+import me.pgds.utils.frames.HClientFrame;
 import me.pgds.utils.frames.HEntryFrame;
+import me.pgds.utils.frames.HExitFrame;
 import me.pgds.utils.frames.MainFrame;
+import me.pgds.utils.frames.RelatoryFrame;
 import me.pgds.utils.frames.main.Frame;
 import me.pgds.utils.frames.main.KeyListener;
 
 @Getter
 public class WindowCore extends JFrame {
 	
+	private String version = "v" + 0.1;
 	private static final long serialVersionUID = -5140442525033186243L;
+	
+	private Color colorBackground = new Color(71,71,71);
 	
 	@Getter
 	private static WindowCore frame;
@@ -38,7 +47,6 @@ public class WindowCore extends JFrame {
 	
 	@Setter
 	private Timer timer;
-	
 	private Manager manager;
 	
 	private Frame main,
@@ -60,39 +68,21 @@ public class WindowCore extends JFrame {
 		setLayout(null);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		getContentPane().setBackground(new Color(107,107,107));
-		setTitle("PEGADAS PRÉ-MOLDADOS");
+		setContentPane(new JLabel(new ImageIcon(API.resizeImage(ImageAPI.getUtils("banner.png"), 1280, 720))));
+		setTitle("PEGADAS PRÃ‰-MOLDADOS " + version);
 		setIconImage(ImageAPI.getIcon("icon_core.png"));
 		setFocusable(true);
 		requestFocusInWindow();
 		addKeyListener(new KeyListener());
 		manager = new Manager();
-		main = new MainFrame(()->{
-			
-			new Text("Texto de teste", Color.black, Color.white, 300, 30, 210, 10, 17, false, true);
-			
-		}, 0);
-		entry = new EntryFrame(()->{
-			
-		}, 1);
-		exit = new ExitFrame(()->{
-			
-		}, 2);
-		client = new ClientFrame(()->{
-			
-		}, 3);
-		hclient = new HEntryFrame(()->{
-					
-		}, 4);
-		hentry = new HEntryFrame(()->{
-			
-		}, 5);
-		hexit = new HEntryFrame(()->{
-			
-		}, 6);
-		relatory = new HEntryFrame(()->{
-			
-		}, 7);
+		main = new MainFrame(0);
+		entry = new EntryFrame(1);
+		exit = new ExitFrame(2);
+		client = new ClientFrame(3);
+		hclient = new HClientFrame(4);
+		hentry = new HEntryFrame(5);
+		hexit = new HExitFrame(6);
+		relatory = new RelatoryFrame(7);
 		main.run();
 	}
 	
@@ -110,63 +100,63 @@ public class WindowCore extends JFrame {
 	public void update() {
 		frame.revalidate();
 		frame.repaint();
-		update(getGraphics());
 	}
 	
 	public void defaultIcons() {
 		
 		buttons.clear();
 		Color color = new Color(145, 118, 0);
-		List list = new List(2, 2,new Button("início", color, Color.white, 200, 25, 2, 2, 15, new ActionListener() {
+		int size = 35;
+		List list = new List(1, 2, 2,new Button("inÃ­cio", color, Color.white, 200, size, 2, 2, 15, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Button button = (Button) e.getSource();
 				if (button.getSelected()) return;
 				main.run();
 			}
-		}),new Button("nova entrada", color, Color.white, 200, 25, 2, 2, 15, new ActionListener() {
+		}),new Button("nova entrada", color, Color.white, 200, size, 2, 2, 15, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Button button = (Button) e.getSource();
 				if (button.getSelected()) return;
 				entry.run();
 			}
-		}),new Button("nova saida", color, Color.white, 200, 25, 2, 2, 15, new ActionListener() {
+		}),new Button("nova saida", color, Color.white, 200, size, 2, 2, 15, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Button button = (Button) e.getSource();
 				if (button.getSelected()) return;
 				exit.run();
 			}
-		}),new Button("novo cliente", color, Color.white, 200, 25, 2, 2, 15, new ActionListener() {
+		}),new Button("novo cliente", color, Color.white, 200, size, 2, 2, 15, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Button button = (Button) e.getSource();
 				if (button.getSelected()) return;
 				client.run();
 			}
-		}),new Button("histórico cliente", color, Color.white, 200, 25, 2, 2, 15, new ActionListener() {
+		}),new Button("histÃ³rico cliente", color, Color.white, 200, size, 2, 2, 15, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Button button = (Button) e.getSource();
 				if (button.getSelected()) return;
 				hclient.run();
 			}
-		}),new Button("histórico entrada", color, Color.white, 200, 25, 2, 2, 15, new ActionListener() {
+		}),new Button("histÃ³rico entrada", color, Color.white, 200, size, 2, 2, 15, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Button button = (Button) e.getSource();
 				if (button.getSelected()) return;
 				hentry.run();
 			}
-		}),new Button("histórico saída", color, Color.white, 200, 25, 2, 2, 15, new ActionListener() {
+		}),new Button("histÃ³rico saÃ­da", color, Color.white, 200, size, 2, 2, 15, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Button button = (Button) e.getSource();
 				if (button.getSelected()) return;
 				hexit.run();
 			}
-		}),new Button("relatórios", color, Color.white, 200, 25, 2, 2, 15, new ActionListener() {
+		}),new Button("relatÃ³rios", color, Color.white, 200, size, 2, 2, 15, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Button button = (Button) e.getSource();
@@ -178,9 +168,9 @@ public class WindowCore extends JFrame {
 			if (!(component instanceof Button)) continue;
 			buttons.add((Button) component);
 		}
-		
-		new Draw(203, 0, 3, 720, new Color(71,71,71));
-		
+		new Draw(203, 0, 3, 720, colorBackground);
+		Text vs = new Text("ðŸ”§ " + version, Color.black, Color.white, 200, 25, 2, 655, 16, false, false);
+		vs.setOpaque(true);
 	}
 			
 }

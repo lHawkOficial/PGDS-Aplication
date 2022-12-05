@@ -2,7 +2,7 @@ package me.pgds.utils.frames.main;
 
 import java.awt.event.KeyEvent;
 
-import me.pgds.objects.Manager;
+import me.pgds.objects.managers.Manager;
 import me.pgds.utils.WindowCore;
 
 public class KeyListener implements java.awt.event.KeyListener {

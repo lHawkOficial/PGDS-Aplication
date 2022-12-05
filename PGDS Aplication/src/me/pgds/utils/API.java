@@ -2,6 +2,8 @@ package me.pgds.utils;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class API {
 
@@ -11,6 +13,10 @@ public class API {
 	    graphics2D.drawImage(originalImage, 0, 0, targetWidth, targetHeight, null);
 	    graphics2D.dispose();
 	    return resizedImage;
+	}
+	
+	public static String getData() {
+		return new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
 	}
 	
 }

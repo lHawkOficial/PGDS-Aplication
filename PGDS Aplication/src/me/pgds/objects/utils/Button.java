@@ -48,8 +48,8 @@ public class Button extends JButton {
 		setBounds(locX, locY, sizeX, sizeY);
 		setFont(new Font("Arial", 0, sizeFont));
 		setText(text);
-		setForeground(foreground);
-		setBackground(background);
+		if (foreground != null) setForeground(foreground);
+		if (background != null) setBackground(background);
 		setBorderPainted(false);
 		setAutoscrolls(false);
 		setHideActionText(true);

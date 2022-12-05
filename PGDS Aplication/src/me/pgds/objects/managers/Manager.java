@@ -1,4 +1,4 @@
-package me.pgds.objects;
+package me.pgds.objects.managers;
 
 import java.util.ArrayList;
 import java.util.Iterator;

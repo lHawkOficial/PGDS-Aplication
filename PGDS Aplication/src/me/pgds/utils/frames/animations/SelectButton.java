@@ -42,7 +42,7 @@ public class SelectButton implements MouseListener {
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		component.setFont(new Font("Arial", 0, 16));
+		component.setFont(new Font("Arial", 0, font.getSize()+1));
 		component.setBackground(component.getBackground().darker());
 		component.setForeground(component.getForeground().brighter());
 		component.setSize(component.getWidth()+2,component.getHeight()+2);

@@ -26,7 +26,7 @@ public class KeyListener implements java.awt.event.KeyListener {
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
 			Frame frame = Manager.get().getFrame(id-1);
 			if (frame == null) frame = Manager.get().getFrame(WindowCore.getFrame().getButtons().size()-1);
-			frame.run();
+			if (frame!=null) frame.run();
 		}
 	}
 

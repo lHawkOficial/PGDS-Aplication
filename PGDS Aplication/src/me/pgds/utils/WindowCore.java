@@ -28,7 +28,9 @@ import me.pgds.utils.frames.ExitFrame;
 import me.pgds.utils.frames.HClientFrame;
 import me.pgds.utils.frames.HEntryFrame;
 import me.pgds.utils.frames.HExitFrame;
+import me.pgds.utils.frames.HProductsFrame;
 import me.pgds.utils.frames.MainFrame;
+import me.pgds.utils.frames.ProductsFrame;
 import me.pgds.utils.frames.RelatoryFrame;
 import me.pgds.utils.frames.main.Frame;
 import me.pgds.utils.frames.main.KeyListener;
@@ -53,6 +55,8 @@ public class WindowCore extends JFrame {
 	entry, 
 	exit,
 	client,
+	products,
+	hprodutcs,
 	hentry,
 	hexit,
 	hclient,
@@ -79,10 +83,12 @@ public class WindowCore extends JFrame {
 		entry = new EntryFrame(1);
 		exit = new ExitFrame(2);
 		client = new ClientFrame(3);
-		hclient = new HClientFrame(4);
-		hentry = new HEntryFrame(5);
-		hexit = new HExitFrame(6);
-		relatory = new RelatoryFrame(7);
+		products = new ProductsFrame(4);
+		hprodutcs = new HProductsFrame(5);
+		hclient = new HClientFrame(6);
+		hentry = new HEntryFrame(7);
+		hexit = new HExitFrame(8);
+		relatory = new RelatoryFrame(9);
 		main.run();
 	}
 	
@@ -135,21 +141,35 @@ public class WindowCore extends JFrame {
 				if (button.getSelected()) return;
 				client.run();
 			}
-		}),new Button("histórico cliente", color, Color.white, 200, size, 2, 2, 15, new ActionListener() {
+		}),new Button("novo produto", color, Color.white, 200, size, 2, 2, 15, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Button button = (Button) e.getSource();
 				if (button.getSelected()) return;
-				hclient.run();
+				products.run();
 			}
-		}),new Button("histórico entrada", color, Color.white, 200, size, 2, 2, 15, new ActionListener() {
+		}),new Button("produtos", color, Color.white, 200, size, 2, 2, 15, new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Button button = (Button) e.getSource();
+				if (button.getSelected()) return;
+				hprodutcs.run();
+			}
+		}),new Button("clientes", color, Color.white, 200, size, 2, 2, 15, new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						Button button = (Button) e.getSource();
+						if (button.getSelected()) return;
+						hclient.run();
+					}
+		}),new Button("entradas", color, Color.white, 200, size, 2, 2, 15, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Button button = (Button) e.getSource();
 				if (button.getSelected()) return;
 				hentry.run();
 			}
-		}),new Button("histórico saída", color, Color.white, 200, size, 2, 2, 15, new ActionListener() {
+		}),new Button("saídas", color, Color.white, 200, size, 2, 2, 15, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Button button = (Button) e.getSource();

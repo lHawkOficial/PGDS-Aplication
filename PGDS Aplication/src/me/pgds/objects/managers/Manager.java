@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import lombok.Getter;
+import me.pgds.objects.Client;
 import me.pgds.objects.Product;
 import me.pgds.utils.WindowCore;
 import me.pgds.utils.frames.main.Frame;
@@ -14,6 +15,7 @@ public class Manager {
 
 	private List<Frame> frames = new ArrayList<>();
 	private List<Product> products = new ArrayList<>();
+	private List<Client> clients = new ArrayList<>();
 	
 	public Frame getFrame(int id) {
 		Iterator<Frame> it = frames.iterator();
@@ -29,6 +31,24 @@ public class Manager {
 		while(it.hasNext()) {
 			Product product = it.next();
 			if (product.getId() == id) return product;
+		}
+		return null;
+	}
+	
+	public Client getClient(String name) {
+		Iterator<Client> it = clients.iterator();
+		while(it.hasNext()) {
+			Client client = it.next();
+			if (client.getName().equalsIgnoreCase(name)) return client;
+		}
+		return null;
+	}
+	
+	public Client getClientNumber(String number) {
+		Iterator<Client> it = clients.iterator();
+		while(it.hasNext()) {
+			Client client = it.next();
+			if (client.getNumero1().equalsIgnoreCase(number) || client.getNumero2().equalsIgnoreCase(number)) return client;
 		}
 		return null;
 	}

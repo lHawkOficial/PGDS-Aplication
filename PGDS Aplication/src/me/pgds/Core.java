@@ -1,27 +1,26 @@
 package me.pgds;
 
-
-
+import me.pgds.objects.Client;
 import me.pgds.objects.Product;
-import me.pgds.objects.utils.frame.SelectProduct;
 import me.pgds.utils.WindowCore;
 
 public class Core {
 	
 	public static void main(String[] args) {
+		long time = System.currentTimeMillis();
+		System.out.println("Iniciando o aplicativo...");
 		new WindowCore().init();
+		System.out.println("Aplicativo iniciado em " + (System.currentTimeMillis()-time) + "ms!");
 		
-		/*
 		new Product("bloco", "14x19x39");
 		new Product("bloco", "9x19x39");
 		new Product("canaleta", "14x19x39");
 		new Product("canaleta", "9x19x39");
 		
-		try {
-			Thread.sleep(3500);
-			new SelectProduct();
-		} catch (Exception e) {
-		}*/
+		new Client("luan victor mariano chagas", "(62) 985305035", new String());
+		new Client("lujam rodrigues mariano chagas", new String(), new String());
+		new Client("fernanda mariano chagas", new String(), new String());
+		new Client("francisco lira chagas", new String(), new String());
 		
 	}
 	

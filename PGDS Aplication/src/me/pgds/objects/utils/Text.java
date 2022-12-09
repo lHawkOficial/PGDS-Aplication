@@ -4,6 +4,8 @@ import java.awt.Color;
 
 
 import java.awt.Font;
+
+import javax.swing.JFrame;
 import javax.swing.JTextPane;
 
 import lombok.Getter;
@@ -27,6 +29,21 @@ public class Text extends JTextPane {
 		setAutoscrolls(false);
 		setVisible(true);
 		core.update();
+		if (animation) addMouseListener(new SelectText(this));
+	}
+	
+	public Text(String text, Color background, Color foreground, int sizeX, int sizeY, int locX, int locY, int sizeFont, boolean editable, boolean animation, JFrame frame) {
+		frame.add(this);
+		setBounds(locX, locY, sizeX, sizeY);
+		setFont(new Font("Arial", 0, sizeFont));
+		setText(text);
+		setEditable(editable);
+		if (foreground != null) setForeground(foreground);
+		if (background != null) setBackground(background);
+		setAutoscrolls(false);
+		setVisible(true);
+		frame.revalidate();
+		frame.repaint();
 		if (animation) addMouseListener(new SelectText(this));
 	}
 	

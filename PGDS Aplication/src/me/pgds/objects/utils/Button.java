@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 
 import lombok.Getter;
 import me.pgds.utils.WindowCore;
@@ -19,11 +20,20 @@ public class Button extends JButton {
 	private Boolean selected = false;
 	
 	public Button(String text, Color background, Color foreground, int sizeX, int sizeY, int locX, int locY, int sizeFont) {
-		presets(text, background, foreground, sizeX, sizeY, locX, locY, sizeFont);
+		presets(text, background, foreground, sizeX, sizeY, locX, locY, sizeFont,WindowCore.getFrame());
 	}
 	
 	public Button(String text, Color background, Color foreground, int sizeX, int sizeY, int locX, int locY, int sizeFont, ActionListener action) {
-		presets(text, background, foreground, sizeX, sizeY, locX, locY, sizeFont);
+		presets(text, background, foreground, sizeX, sizeY, locX, locY, sizeFont,WindowCore.getFrame());
+		addActionListener(action);
+	}
+	
+	public Button(String text, Color background, Color foreground, int sizeX, int sizeY, int locX, int locY, int sizeFont, JFrame frame) {
+		presets(text, background, foreground, sizeX, sizeY, locX, locY, sizeFont,frame);
+	}
+	
+	public Button(String text, Color background, Color foreground, int sizeX, int sizeY, int locX, int locY, int sizeFont, ActionListener action, JFrame frame) {
+		presets(text, background, foreground, sizeX, sizeY, locX, locY, sizeFont,frame);
 		addActionListener(action);
 	}
 	
@@ -42,9 +52,8 @@ public class Button extends JButton {
 		setForeground(getForeground().brighter());
 	}
 	
-	private void presets(String text, Color background, Color foreground, int sizeX, int sizeY, int locX, int locY, int sizeFont) {
-		WindowCore core = WindowCore.getFrame();
-		core.add(this);
+	private void presets(String text, Color background, Color foreground, int sizeX, int sizeY, int locX, int locY, int sizeFont,JFrame frame) {
+		frame.add(this);
 		setBounds(locX, locY, sizeX, sizeY);
 		setFont(new Font("Arial", 0, sizeFont));
 		setText(text);

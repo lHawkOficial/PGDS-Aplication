@@ -1,6 +1,7 @@
 package me.pgds.objects.utils.frame;
 
 import java.awt.Color;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -15,29 +16,29 @@ import javax.swing.JLabel;
 
 import lombok.Getter;
 import me.pgds.imgs.ImageAPI;
-import me.pgds.objects.Product;
+import me.pgds.objects.Client;
 import me.pgds.objects.managers.Manager;
 import me.pgds.objects.utils.Button;
 import me.pgds.objects.utils.ListComp;
 import me.pgds.objects.utils.Text;
-import me.pgds.objects.utils.TextProduct;
+import me.pgds.objects.utils.TextClient;
 import me.pgds.utils.API;
 import me.pgds.utils.WindowCore;
 
 @Getter
-public class SelectProduct {
+public class SelectClient {
 
-	private Product selected;
+	private Client selected;
 	private boolean searching = true;
 	private long time = System.currentTimeMillis();
 	private JFrame frame;
-	private TextProduct textproduct;
+	private TextClient textproduct;
 	
-	public SelectProduct(TextProduct textProduct) {
+	public SelectClient(TextClient textProduct) {
 		this.textproduct = textProduct;
 		WindowCore core = WindowCore.getFrame();
 		core.setVisible(false);
-		frame = new JFrame("Selecionar produto");
+		frame = new JFrame("Selecionar cliente");
 		frame.setSize(core.getSize());
 		frame.setLocation(core.getLocation());
 		frame.setContentPane(new JLabel(new ImageIcon(API.resizeImage(ImageAPI.getUtils("banner.png"), frame.getWidth(), frame.getHeight()))));
@@ -60,17 +61,18 @@ public class SelectProduct {
 			},frame);
 			
 			ListComp list = new ListComp(4, 63, 1, 12, 
-			new Text("Selecione um produto logo abaixo", core.getBackground().darker().darker(), Color.white, 400, 30, 0, 0, 17, false, true, frame),
-			new Text("nenhum produto foi encontrado!", new Color(175,0,0), Color.white, 400, 30, 0, 0, 17, false, false, frame), frame);
-			for(Product product : Manager.get().getProducts()) {
+			new Text("Selecione um cliente logo abaixo", core.getBackground().darker().darker(), Color.white, 400, 30, 0, 0, 17, false, true, frame),
+			new Text("nenhum cliente foi encontrado!", new Color(175,0,0), Color.white, 520, 30, 0, 0, 17, false, false, frame), frame);
+			for(Client client : Manager.get().getClients()) {
 				List<JComponent> components = new ArrayList<>();
-				components.add(new Text(""+product.getId(), Color.BLACK, Color.GRAY, 35, 30, 0, 0, 15, false, false,frame));
-				components.add(new Text(product.getName(), new Color(71,71,71), Color.white, 120, 30, 0, 0, 15, false, true,frame));
-				components.add(new Text(product.getDesc(), new Color(48,48,48), Color.white, 240, 30, 0, 0, 15, false, true,frame));
+				components.add(new Text(""+client.getId(), Color.BLACK, Color.GRAY, 35, 30, 0, 0, 15, false, false,frame));
+				components.add(new Text(client.getName(), new Color(71,71,71), Color.white, 240, 30, 0, 0, 15, false, true,frame));
+				components.add(new Text(client.getNumero1(), new Color(71,71,71).darker(), Color.white, 120, 30, 0, 0, 15, false, true,frame));
+				components.add(new Text(client.getNumero2(), new Color(71,71,71).darker().darker(), Color.white, 120, 30, 0, 0, 15, false, true,frame));
 				Button button = new Button(null, Color.black, Color.white, 30, 30, 0, 0, 15, new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						selected = product;
+						selected = client;
 					}
 				},frame);
 				button.setIcon(new ImageIcon(API.resizeImage(ImageAPI.getUtils("search.png"), 30, 30)));
@@ -96,7 +98,7 @@ public class SelectProduct {
 		
 	}
 	
-	private Product finish() {
+	private Client finish() {
 		searching = false;
 		WindowCore core = WindowCore.getFrame();
 		core.setLocation(frame.getLocation());

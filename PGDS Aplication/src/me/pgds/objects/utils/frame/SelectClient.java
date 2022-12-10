@@ -61,8 +61,8 @@ public class SelectClient {
 			},frame);
 			
 			ListComp list = new ListComp(4, 63, 1, 12, 
-			new Text("Selecione um cliente logo abaixo", core.getBackground().darker().darker(), Color.white, 400, 30, 0, 0, 17, false, true, frame),
-			new Text("nenhum cliente foi encontrado!", new Color(175,0,0), Color.white, 520, 30, 0, 0, 17, false, false, frame), frame);
+			new Text("Selecione um cliente logo abaixo", core.getBackground().darker().darker(), Color.white, 520, 30, 0, 0, 17, false, true, frame),
+			new Text("nenhum cliente foi encontrado!", new Color(175,0,0), Color.white.darker(), 520, 30, 0, 0, 17, false, false, frame), frame);
 			for(Client client : Manager.get().getClients()) {
 				List<JComponent> components = new ArrayList<>();
 				components.add(new Text(""+client.getId(), Color.BLACK, Color.GRAY, 35, 30, 0, 0, 15, false, false,frame));

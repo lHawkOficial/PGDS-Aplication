@@ -25,4 +25,22 @@ public class API {
 		return new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
 	}
 	
+	public static boolean isInteger(String txt) {
+		try {
+			Integer.valueOf(txt.replace(",", "."));
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+	
+	public static boolean isDouble(String txt) {
+		try {
+			Double.valueOf(txt.replace(",", "."));
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+	
 }

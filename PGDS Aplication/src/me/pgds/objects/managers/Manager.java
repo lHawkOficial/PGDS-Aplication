@@ -6,6 +6,8 @@ import java.util.List;
 
 import lombok.Getter;
 import me.pgds.objects.Client;
+import me.pgds.objects.Entry;
+import me.pgds.objects.Exit;
 import me.pgds.objects.Product;
 import me.pgds.utils.WindowCore;
 import me.pgds.utils.frames.main.Frame;
@@ -16,6 +18,8 @@ public class Manager {
 	private List<Frame> frames = new ArrayList<>();
 	private List<Product> products = new ArrayList<>();
 	private List<Client> clients = new ArrayList<>();
+	private List<Entry> entrys = new ArrayList<>();
+	private List<Exit> exits = new ArrayList<>();
 	
 	public Frame getFrame(int id) {
 		Iterator<Frame> it = frames.iterator();

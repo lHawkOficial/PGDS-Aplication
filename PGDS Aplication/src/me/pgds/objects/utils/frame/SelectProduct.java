@@ -61,7 +61,7 @@ public class SelectProduct {
 			
 			ListComp list = new ListComp(4, 63, 1, 12, 
 			new Text("Selecione um produto logo abaixo", core.getBackground().darker().darker(), Color.white, 400, 30, 0, 0, 17, false, true, frame),
-			new Text("nenhum produto foi encontrado!", new Color(175,0,0), Color.white, 400, 30, 0, 0, 17, false, false, frame), frame);
+			new Text("nenhum produto foi encontrado!", new Color(175,0,0), Color.white.darker(), 400, 30, 0, 0, 17, false, false, frame), frame);
 			for(Product product : Manager.get().getProducts()) {
 				List<JComponent> components = new ArrayList<>();
 				components.add(new Text(""+product.getId(), Color.BLACK, Color.GRAY, 35, 30, 0, 0, 15, false, false,frame));

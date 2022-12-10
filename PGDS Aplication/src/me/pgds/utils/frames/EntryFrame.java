@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 import me.pgds.imgs.ImageAPI;
 import me.pgds.objects.utils.Button;
@@ -39,7 +40,25 @@ public class EntryFrame extends Frame {
 			Button confirmar = new Button("confirmar", new Color(38,128,0), Color.white, 754, 30, 0, 0, 17, new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					core.getMain().run();
+					if (!data.getText().getText().isEmpty()) {
+						if (!valor.getText().getText().isEmpty() && API.isDouble(valor.getText().getText().replace(",", "."))) {
+							double value = Double.valueOf(valor.getText().getText().replace(",", "."));
+							if (value >= 0 && value <= Double.MAX_VALUE) {
+								if (!pagamento.getText().getText().isEmpty()) {
+									String descricao = desc.getText().getText();
+									descricao = descricao.isEmpty() ? "N.A" : descricao;
+								}else {
+									JOptionPane.showMessageDialog(null, "Preencha o campo de pagamento!");	
+								}
+							}else {
+								JOptionPane.showMessageDialog(null, "O valor foi escrito de forma incorreta!");
+							}
+						}else {
+							JOptionPane.showMessageDialog(null, "O valor foi escrito de forma incorreta!");
+						}
+					}else {
+						JOptionPane.showMessageDialog(null, "Digite a data corretamente!");
+					}
 				}
 			});
 			

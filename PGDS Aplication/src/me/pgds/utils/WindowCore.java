@@ -6,6 +6,7 @@ import java.awt.Color;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Timer;
 
@@ -42,6 +43,10 @@ public class WindowCore extends JFrame {
 	private static final long serialVersionUID = -5140442525033186243L;
 	
 	private Color colorBackground = new Color(71,71,71);
+	private File folder,
+	folderProducts,
+	folderClients,
+	folderRelatorys;
 	
 	@Getter
 	private static WindowCore frame;
@@ -72,13 +77,15 @@ public class WindowCore extends JFrame {
 		setLayout(null);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setContentPane(new JLabel(new ImageIcon(API.resizeImage(ImageAPI.getUtils("banner.png"), 1280, 720))));
+		setContentPane(new JLabel(new ImageIcon(API.resizeImage(ImageAPI.getUtils("banner.png"), getWidth(), getHeight()))));
 		setTitle("PEGADAS PRÉ-MOLDADOS " + version);
 		setIconImage(ImageAPI.getIcon("icon_core.png"));
 		setFocusable(true);
 		requestFocusInWindow();
 		addKeyListener(new KeyListener());
+		createFolders();
 		manager = new Manager();
+		API.initialize();
 		main = new MainFrame(0);
 		entry = new EntryFrame(1);
 		exit = new ExitFrame(2);
@@ -90,6 +97,21 @@ public class WindowCore extends JFrame {
 		hexit = new HExitFrame(8);
 		relatory = new RelatoryFrame(9);
 		main.run();
+	}
+	
+	private void createFolders() {
+		folder = new File("pgds_data");
+		if (!folder.exists()) folder.mkdir();
+		
+		folderProducts = new File(folder + "/produts");
+		if (!folderProducts.exists()) folderProducts.mkdir();
+		
+		folderClients = new File(folder + "/clients");
+		if (!folderClients.exists()) folderClients.mkdir();
+		
+		folderRelatorys = new File(folder + "/relatorys");
+		if (!folderRelatorys.exists()) folderRelatorys.mkdir();
+		
 	}
 	
 	public WindowCore init() {

@@ -1,6 +1,7 @@
 package me.pgds.utils.frames;
 
 import java.awt.Color;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -8,6 +9,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 import me.pgds.imgs.ImageAPI;
+import me.pgds.objects.Entry;
 import me.pgds.objects.utils.Button;
 import me.pgds.objects.utils.List;
 import me.pgds.objects.utils.Text;
@@ -37,30 +39,7 @@ public class EntryFrame extends Frame {
 			TextButton desc = new TextButton(0, 0,new Text("descrição", core.getColorBackground().darker(), Color.gray, 250, 30, 0, 0, 17, false, true), 
 			new Text(null, core.getColorBackground(), Color.white, 250, 120, 0, 0, 17, true, false), null, null);
 			
-			Button confirmar = new Button("confirmar", new Color(38,128,0), Color.white, 754, 30, 0, 0, 17, new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					if (!data.getText().getText().isEmpty()) {
-						if (!valor.getText().getText().isEmpty() && API.isDouble(valor.getText().getText().replace(",", "."))) {
-							double value = Double.valueOf(valor.getText().getText().replace(",", "."));
-							if (value >= 0 && value <= Double.MAX_VALUE) {
-								if (!pagamento.getText().getText().isEmpty()) {
-									String descricao = desc.getText().getText();
-									descricao = descricao.isEmpty() ? "N.A" : descricao;
-								}else {
-									JOptionPane.showMessageDialog(null, "Preencha o campo de pagamento!");	
-								}
-							}else {
-								JOptionPane.showMessageDialog(null, "O valor foi escrito de forma incorreta!");
-							}
-						}else {
-							JOptionPane.showMessageDialog(null, "O valor foi escrito de forma incorreta!");
-						}
-					}else {
-						JOptionPane.showMessageDialog(null, "Digite a data corretamente!");
-					}
-				}
-			});
+			Button confirmar = new Button("confirmar", new Color(38,128,0), Color.white, 754, 30, 0, 0, 17);
 			
 			List list = new List(0, 209, 2);
 			list.addAll(data.getComponents());
@@ -98,6 +77,53 @@ public class EntryFrame extends Frame {
 			list = new List(0, 713, 2);
 			list.addAll(cliente.getComponents());
 			list.build();
+			
+			confirmar.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if (!data.getText().getText().isEmpty()) {
+						if (!valor.getText().getText().isEmpty() && API.isDouble(valor.getText().getText().replace(",", "."))) {
+							double value = Double.valueOf(valor.getText().getText().replace(",", "."));
+							if (value >= 0 && value <= Double.MAX_VALUE) {
+								if (!pagamento.getText().getText().isEmpty()) {
+									String descricao = desc.getText().getText();
+									descricao = descricao.isEmpty() ? "N.A" : descricao;
+									Entry entry = new Entry(data.getText().getText(), descricao, pagamento.getText().getText(), value, true);
+									if (product.getSelected() != null) entry.setProduct(product.getSelected());
+									if (!valorUnidade.getText().getText().isEmpty()) {
+										if (API.isDouble(valorUnidade.getText().getText())) {
+											entry.setValorUn(Double.valueOf(valorUnidade.getText().getText().replace(",", ".")));
+										} else {
+											JOptionPane.showMessageDialog(null, "O valor per/Unidade foi escrito incorretamente e o valor foi setado para 0!");
+										}
+									}
+									if (!quantidade.getText().getText().isEmpty()) {
+										if (API.isInteger(quantidade.getText().getText())) {
+											entry.setQuantidade(Integer.valueOf(quantidade.getText().getText().replace(",", ".")));
+										} else {
+											JOptionPane.showMessageDialog(null, "A quantidade foi escrita incorretamente e o valor foi setado para 0!");
+										}
+									}
+									entry.setProduct(product.getSelected());
+									entry.setClient(cliente.getSelected());
+									entry.save();
+									JOptionPane.showMessageDialog(null, "uma nova entrada foi efetuada!");
+									WindowCore.getFrame().getMain().run();
+									return;
+								}else {
+									JOptionPane.showMessageDialog(null, "Preencha o campo de pagamento!");	
+								}
+							}else {
+								JOptionPane.showMessageDialog(null, "O valor foi escrito de forma incorreta!");
+							}
+						}else {
+							JOptionPane.showMessageDialog(null, "O valor foi escrito de forma incorreta!");
+						}
+					}else {
+						JOptionPane.showMessageDialog(null, "Digite a data corretamente!");
+					}
+				}
+			});
 			
 		}, buttonSelected);
 	}

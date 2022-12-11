@@ -39,6 +39,15 @@ public class Manager {
 		return null;
 	}
 	
+	public Client getClient(int id) {
+		Iterator<Client> it = clients.iterator();
+		while(it.hasNext()) {
+			Client client = it.next();
+			if (client.getId() == id) return client;
+		}
+		return null;
+	}
+	
 	public Client getClient(String name) {
 		Iterator<Client> it = clients.iterator();
 		while(it.hasNext()) {

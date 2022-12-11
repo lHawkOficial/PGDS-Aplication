@@ -12,7 +12,6 @@ public class Core {
 		new WindowCore().init();
 		System.out.println("Aplicativo iniciado em " + (System.currentTimeMillis()-time) + "ms!");
 		
-		/*
 		new Product("bloco", "14x19x39");
 		new Product("bloco", "9x19x39");
 		new Product("canaleta", "14x19x39");
@@ -22,8 +21,7 @@ public class Core {
 		new Client("lujam rodrigues mariano chagas", new String(), new String());
 		new Client("fernanda mariano chagas", new String(), new String());
 		new Client("francisco lira chagas", new String(), new String());
-		new Client("enel engenharia e fornecedora de energia renovavel", new String(), new String());
-		*/
+		
 		
 		/*
 		for (int i = 0; i < 35; i++) {

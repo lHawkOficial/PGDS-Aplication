@@ -11,6 +11,7 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 
 import lombok.Getter;
+import lombok.Setter;
 import me.pgds.imgs.ImageAPI;
 import me.pgds.utils.API;
 import me.pgds.utils.RowCreator;
@@ -20,6 +21,7 @@ import me.pgds.utils.WindowCore;
 public class ListComp {	
 
 	private RowCreator rowcreator;
+	private Runnable runnable;
 	private List<List<JComponent>> comps = new ArrayList<>();
 	private int locX, locY, maxObjects, size;
 	private Text text, empty, rows;
@@ -27,6 +29,8 @@ public class ListComp {
 	private int pagina = 1;
 	private boolean created = false;
 	private JFrame frame = WindowCore.getFrame();
+	@Setter
+	private Boolean showRow = true;
 	
 	public ListComp(int locX, int locY, int size, int maxObjects, Text text, Text empty) {
 		this.text = text;
@@ -145,6 +149,7 @@ public class ListComp {
 	}
 	
 	private void updateRow() {
+		if (!showRow) return;
 		if (rows == null) {
 			rows = new Text(null, new Color(64,64,64), Color.gray, text.getWidth(), 25, 0, 0, 15, false, true, frame);
 		}

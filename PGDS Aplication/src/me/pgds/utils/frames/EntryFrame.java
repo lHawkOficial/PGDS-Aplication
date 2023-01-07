@@ -108,7 +108,7 @@ public class EntryFrame extends Frame {
 									entry.setClient(cliente.getSelected());
 									entry.save();
 									JOptionPane.showMessageDialog(null, "uma nova entrada foi efetuada!");
-									WindowCore.getFrame().getMain().run();
+									WindowCore.getFrame().getEntry().run();
 									return;
 								}else {
 									JOptionPane.showMessageDialog(null, "Preencha o campo de pagamento!");	

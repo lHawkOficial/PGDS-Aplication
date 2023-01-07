@@ -1,5 +1,7 @@
 package me.pgds.utils.frames;
 
+
+
 import lombok.Getter;
 import me.pgds.utils.frames.main.Frame;
 
@@ -11,6 +13,5 @@ public class MainFrame extends Frame {
 			
 		}, id);
 	}
-	
 
 }

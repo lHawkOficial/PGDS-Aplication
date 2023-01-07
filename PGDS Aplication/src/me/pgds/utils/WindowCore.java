@@ -126,8 +126,11 @@ public class WindowCore extends JFrame {
 	}
 	
 	public void update() {
-		frame.revalidate();
-		frame.repaint();
+		try {
+			frame.revalidate();
+			frame.repaint();
+		} catch (Exception e) {
+		}
 	}
 	
 	public void defaultIcons() {

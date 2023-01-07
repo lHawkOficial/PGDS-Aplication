@@ -17,4 +17,8 @@ public class Product {
 		Manager.get().getProducts().add(this);
 	}
 	
+	public void delete() {
+		
+	}
+	
 }

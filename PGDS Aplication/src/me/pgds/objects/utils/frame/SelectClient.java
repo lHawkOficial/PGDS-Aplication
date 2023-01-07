@@ -67,8 +67,10 @@ public class SelectClient {
 				List<JComponent> components = new ArrayList<>();
 				components.add(new Text(""+client.getId(), Color.BLACK, Color.GRAY, 35, 30, 0, 0, 15, false, false,frame));
 				components.add(new Text(client.getName(), new Color(71,71,71), Color.white, 240, 30, 0, 0, 15, false, true,frame));
-				components.add(new Text(client.getNumero1(), new Color(71,71,71).darker(), Color.white, 120, 30, 0, 0, 15, false, true,frame));
-				components.add(new Text(client.getNumero2(), new Color(71,71,71).darker().darker(), Color.white, 120, 30, 0, 0, 15, false, true,frame));
+				components.add(new Text(client.getNumero1(), new Color(71,71,71).darker(), Color.white, 170, 30, 0, 0, 15, false, true,frame));
+				components.add(new Text(client.getNumero2(), new Color(71,71,71).darker().darker(), Color.white, 170, 30, 0, 0, 15, false, true,frame));
+				components.add(new Text(client.getCpf(), new Color(71,71,71).darker().darker(), Color.white, 170, 30, 0, 0, 15, false, true,frame));
+				components.add(new Text(client.getCnpj(), new Color(71,71,71).darker().darker(), Color.white, 170, 30, 0, 0, 15, false, true,frame));
 				Button button = new Button(null, Color.black, Color.white, 30, 30, 0, 0, 15, new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {

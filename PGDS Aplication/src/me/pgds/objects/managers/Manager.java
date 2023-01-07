@@ -66,6 +66,15 @@ public class Manager {
 		return null;
 	}
 	
+	public Client getClientCpf(String cpf) {
+		Iterator<Client> it = clients.iterator();
+		while(it.hasNext()) {
+			Client client = it.next();
+			if (client.getCpf().equalsIgnoreCase(cpf)) return client;
+		}
+		return null;
+	}
+	
 	public static Manager get() {
 		return WindowCore.getFrame().getManager();
 	}

@@ -111,4 +111,43 @@ public class API {
 		
 	}
 	
+	public static void relatoryEntrys() {
+		WindowCore core = WindowCore.getFrame();
+		File folder = new File(core.getFolder() + "/relatorys");
+		File file = new File(folder + "/"+randomString() + ".yml");
+		if (!file.exists()) {
+			try {
+				file.createNewFile();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public static void relatoryExits() {
+		WindowCore core = WindowCore.getFrame();
+		File folder = new File(core.getFolder() + "/relatorys");
+		File file = new File(folder + "/"+randomString() + ".yml");
+		if (!file.exists()) {
+			try {
+				file.createNewFile();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public static void relatoryAll() {
+		WindowCore core = WindowCore.getFrame();
+		File folder = new File(core.getFolder() + "/relatorys");
+		File file = new File(folder + "/"+randomString() + ".yml");
+		if (!file.exists()) {
+			try {
+				file.createNewFile();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
 }

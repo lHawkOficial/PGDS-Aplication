@@ -28,7 +28,6 @@ public class Text extends JTextPane {
 		if (background != null) setBackground(background);
 		setAutoscrolls(false);
 		setVisible(true);
-		core.update();
 		if (animation) addMouseListener(new SelectText(this));
 	}
 	

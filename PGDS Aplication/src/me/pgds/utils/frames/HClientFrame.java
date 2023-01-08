@@ -2,6 +2,7 @@ package me.pgds.utils.frames;
 
 import java.awt.Color;
 
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -9,9 +10,6 @@ import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
-
-import lombok.Getter;
-import lombok.Setter;
 import me.pgds.imgs.ImageAPI;
 import me.pgds.objects.Client;
 import me.pgds.objects.managers.Manager;

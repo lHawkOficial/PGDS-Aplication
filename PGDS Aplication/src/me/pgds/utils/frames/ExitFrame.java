@@ -1,6 +1,7 @@
 package me.pgds.utils.frames;
 
 import java.awt.Color;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -8,7 +9,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 import me.pgds.imgs.ImageAPI;
-import me.pgds.objects.Entry;
+import me.pgds.objects.Exit;
 import me.pgds.objects.utils.Button;
 import me.pgds.objects.utils.List;
 import me.pgds.objects.utils.Text;
@@ -87,25 +88,25 @@ public class ExitFrame extends Frame {
 								if (!pagamento.getText().getText().isEmpty()) {
 									String descricao = desc.getText().getText();
 									descricao = descricao.isEmpty() ? "N.A" : descricao;
-									Entry entry = new Entry(data.getText().getText(), descricao, pagamento.getText().getText(), value, true);
-									if (product.getSelected() != null) entry.setProduct(product.getSelected());
+									Exit exit = new Exit(data.getText().getText(), descricao, pagamento.getText().getText(), value, true);
+									if (product.getSelected() != null) exit.setProduct(product.getSelected());
 									if (!valorUnidade.getText().getText().isEmpty()) {
 										if (API.isDouble(valorUnidade.getText().getText())) {
-											entry.setValorUn(Double.valueOf(valorUnidade.getText().getText().replace(",", ".")));
+											exit.setValorUn(Double.valueOf(valorUnidade.getText().getText().replace(",", ".")));
 										} else {
 											JOptionPane.showMessageDialog(null, "O valor per/Unidade foi escrito incorretamente e o valor foi setado para 0!");
 										}
 									}
 									if (!quantidade.getText().getText().isEmpty()) {
 										if (API.isInteger(quantidade.getText().getText())) {
-											entry.setQuantidade(Integer.valueOf(quantidade.getText().getText().replace(",", ".")));
+											exit.setQuantidade(Integer.valueOf(quantidade.getText().getText().replace(",", ".")));
 										} else {
 											JOptionPane.showMessageDialog(null, "A quantidade foi escrita incorretamente e o valor foi setado para 0!");
 										}
 									}
-									entry.setProduct(product.getSelected());
-									entry.setClient(cliente.getSelected());
-									entry.save();
+									exit.setProduct(product.getSelected());
+									exit.setClient(cliente.getSelected());
+									exit.save();
 									JOptionPane.showMessageDialog(null, "uma nova saída foi efetuada!");
 									WindowCore.getFrame().getExit().run();
 									return;

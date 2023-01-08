@@ -93,6 +93,11 @@ public class ListComp {
 		return this;
 	}
 	
+	public void reOpen() {
+		build();
+		updateRow();
+	}
+	
 	@SuppressWarnings("unchecked")
 	public ListComp build() {
 		int locX = this.locX;

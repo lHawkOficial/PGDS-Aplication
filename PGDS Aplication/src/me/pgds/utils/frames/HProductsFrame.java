@@ -26,7 +26,7 @@ public class HProductsFrame extends Frame{
 			
 			WindowCore core = WindowCore.getFrame();
 			ListComp list = new ListComp(209, 27, 1, 12, new Text("NOME   /   DESCRIÇÃO   /   DELETAR", Color.GRAY.darker(), Color.gray, 300, 30, 0, 0, 15, false, true),
-			new Text("nenhum produto foi encontrado!", Color.GRAY.darker(), Color.gray, 300, 30, 0, 0, 15, false, false));
+			new Text("nenhum produto foi encontrado!", Color.red.darker().darker(), Color.gray, 300, 30, 0, 0, 15, false, false));
 			
 			for(Product product : Manager.get().getProducts()) {
 				List<JComponent> components = new ArrayList<>();

@@ -4,11 +4,15 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Random;
 
+import me.pgds.objects.Client;
 import me.pgds.objects.Entry;
+import me.pgds.objects.Exit;
 
 public class API {
 
@@ -23,6 +27,11 @@ public class API {
 		} catch (Exception e) {
 			return null;
 		}
+	}
+	
+	public static double formatValue(double valor) {
+		NumberFormat formatter = new DecimalFormat("0.00");
+		return Double.valueOf(formatter.format(valor).replace(",", "."));
 	}
 	
 	public static String getData() {
@@ -67,13 +76,34 @@ public class API {
 	public static void initialize() {
 		
 		WindowCore core = WindowCore.getFrame();
-		File folder = new File(core.getFolder() + "/entrys");
+		
+		File folder = new File(core.getFolder() + "/clients");
+		if (folder.exists()) {
+			for(File file : folder.listFiles()) {
+				if (!file.getName().endsWith(".yml")) continue;
+				Client.load(file);
+			}
+		}
+		
+		folder = new File(core.getFolder() + "/entrys");
 		if (folder.exists()) {
 			for(File fd : folder.listFiles()) {
 				if (!fd.isDirectory()) continue;
 				for(File file : fd.listFiles()) {
 					if (file.getName().endsWith(".yml")) {
 						Entry.load(file);
+					}
+				}
+			}
+		}
+		
+		folder = new File(core.getFolder() + "/exits");
+		if (folder.exists()) {
+			for(File fd : folder.listFiles()) {
+				if (!fd.isDirectory()) continue;
+				for(File file : fd.listFiles()) {
+					if (file.getName().endsWith(".yml")) {
+						Exit.load(file);
 					}
 				}
 			}

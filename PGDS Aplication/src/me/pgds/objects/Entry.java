@@ -85,7 +85,13 @@ public class Entry {
 		entry.setProduct(product);
 		entry.setValorUn(valorUn);
 		entry.setQuantidade(quantidade);
+		entry.setFile(file);
 		return entry;
+	}
+	
+	public void delete() {
+		Manager.get().getEntrys().remove(this);
+		file.delete();
 	}
 	
 }

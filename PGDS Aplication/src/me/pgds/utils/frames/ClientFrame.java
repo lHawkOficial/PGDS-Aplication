@@ -58,13 +58,13 @@ public class ClientFrame extends Frame {
 								if (!cnpj.getText().getText().isEmpty()) {
 									if (!celular.getText().getText().isEmpty()) {
 										if (!telefone.getText().getText().isEmpty()) {
-											if (Manager.get().getClientCpf(cpf.getText().getText()) == null) {
+											if (Manager.get().getClientCpf(cpf.getText().getText()) == null || cpf.getText().getText().equalsIgnoreCase("N.A")) {
 												String no = nome.getText().getText();
 												String c = celular.getText().getText();
 												String t = telefone.getText().getText();
 												String cp = cpf.getText().getText();
 												String cn = cnpj.getText().getText();
-												new Client(no, c, t, cp, cn);
+												new Client(no, c, t, cp, cn, true);
 												JOptionPane.showMessageDialog(null, "Você criou um novo cliente!");
 												core.getClient().run();
 												return;

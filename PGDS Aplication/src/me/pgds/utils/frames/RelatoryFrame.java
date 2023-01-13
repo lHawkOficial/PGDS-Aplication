@@ -1,22 +1,8 @@
 package me.pgds.utils.frames;
 
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.swing.ImageIcon;
-import javax.swing.JComponent;
-
-import me.pgds.imgs.ImageAPI;
-import me.pgds.objects.utils.Button;
-import me.pgds.objects.utils.ListComp;
 import me.pgds.objects.utils.Text;
-import me.pgds.objects.utils.TextButton;
-import me.pgds.utils.API;
-import me.pgds.utils.WindowCore;
 import me.pgds.utils.frames.main.Frame;
 
 public class RelatoryFrame extends Frame{
@@ -24,8 +10,10 @@ public class RelatoryFrame extends Frame{
 	public RelatoryFrame(int buttonSelected) {
 		super(()->{
 			
-			WindowCore core = WindowCore.getFrame();
+			new Text("PÁGINA EM DESENVOLVIMENTO", Color.red.darker().darker().darker(), Color.white, 1000, 720, 209, 0, 15, false, false);
 			
+			/*
+			WindowCore core = WindowCore.getFrame();
 			ListComp list = new ListComp(209, 27, 1, 10, new Text("ID    /    NOME    /    DELETAR", Color.GRAY.darker(), Color.gray, 300, 30, 0, 0, 15, false, true),
 			new Text("nenhum relatório foi encontrado!", Color.red.darker().darker(), Color.gray, 300, 30, 0, 0, 15, false, false));
 			
@@ -67,6 +55,7 @@ public class RelatoryFrame extends Frame{
 				API.relatoryAll();
 				core.getRelatory().run();
 			});
+			*/
 			
 		}, buttonSelected);
 	}

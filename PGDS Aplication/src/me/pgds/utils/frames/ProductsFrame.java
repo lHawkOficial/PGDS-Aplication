@@ -40,7 +40,7 @@ public class ProductsFrame extends Frame{
 				public void actionPerformed(ActionEvent e) {
 					if (!nome.getText().getText().isEmpty()) {
 						if (!desc.getText().getText().isEmpty()) {
-							new Product(nome.getText().getText(), desc.getText().getText());
+							new Product(nome.getText().getText(), desc.getText().getText(), true);
 							JOptionPane.showMessageDialog(null, "Você criou um novo produto!");
 							core.getProducts().run();
 							return;

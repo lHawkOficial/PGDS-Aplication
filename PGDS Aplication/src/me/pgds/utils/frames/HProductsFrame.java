@@ -36,7 +36,6 @@ public class HProductsFrame extends Frame{
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						product.delete();
-						JOptionPane.showMessageDialog(null, "Produto deletado com sucesso!");
 						core.getHprodutcs().run();
 						return;
 					}

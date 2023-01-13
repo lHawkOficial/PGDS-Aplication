@@ -13,6 +13,7 @@ import java.util.Random;
 import me.pgds.objects.Client;
 import me.pgds.objects.Entry;
 import me.pgds.objects.Exit;
+import me.pgds.objects.Product;
 
 public class API {
 
@@ -85,6 +86,14 @@ public class API {
 			}
 		}
 		
+		folder = new File(core.getFolder() + "/produts");
+		if (folder.exists()) {
+			for(File file : folder.listFiles()) {
+				if (!file.getName().endsWith(".yml")) continue;
+				Product.load(file);
+			}
+		}
+		
 		folder = new File(core.getFolder() + "/entrys");
 		if (folder.exists()) {
 			for(File fd : folder.listFiles()) {
@@ -114,7 +123,7 @@ public class API {
 	public static void relatoryEntrys() {
 		WindowCore core = WindowCore.getFrame();
 		File folder = new File(core.getFolder() + "/relatorys");
-		File file = new File(folder + "/"+randomString() + ".yml");
+		File file = new File(folder + "/entrada_"+randomString() + ".yml");
 		if (!file.exists()) {
 			try {
 				file.createNewFile();
@@ -127,7 +136,7 @@ public class API {
 	public static void relatoryExits() {
 		WindowCore core = WindowCore.getFrame();
 		File folder = new File(core.getFolder() + "/relatorys");
-		File file = new File(folder + "/"+randomString() + ".yml");
+		File file = new File(folder + "/saida_"+randomString() + ".yml");
 		if (!file.exists()) {
 			try {
 				file.createNewFile();
@@ -140,7 +149,7 @@ public class API {
 	public static void relatoryAll() {
 		WindowCore core = WindowCore.getFrame();
 		File folder = new File(core.getFolder() + "/relatorys");
-		File file = new File(folder + "/"+randomString() + ".yml");
+		File file = new File(folder + "/todos_"+randomString() + ".yml");
 		if (!file.exists()) {
 			try {
 				file.createNewFile();

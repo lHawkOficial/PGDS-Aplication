@@ -14,7 +14,7 @@ public class MainFrame extends Frame {
 	public MainFrame(int id) {
 		super(()->{
 			
-			new Text("PÁGINA EM DESENVOLVIMENTO", Color.red.darker().darker().darker(), Color.white, 1000, 720, 209, 0, 15, false, false);
+			new Text("PÁGINA EM DESENVOLVIMENTO", Color.red.darker().darker().darker(), Color.white, 1000, 720, 209, 0, 15, false, false).setOpaque(false);
 			
 		}, id);
 	}

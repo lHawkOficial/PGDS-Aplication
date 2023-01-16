@@ -1,6 +1,7 @@
 package me.pgds.utils.frames;
 
 import java.awt.Color;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -8,7 +9,6 @@ import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
-import javax.swing.JOptionPane;
 
 import me.pgds.imgs.ImageAPI;
 import me.pgds.objects.Product;

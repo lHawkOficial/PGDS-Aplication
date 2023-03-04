@@ -27,14 +27,14 @@ public class HExitFrame extends Frame {
 		super(()->{
 			
 			WindowCore core = WindowCore.getFrame();
-			ListComp list = new ListComp(209, 27, 1, 5, new Text("DATA / CLIENTE / PRODUTO / VALOR TOTAL / VALOR UN / PAGAMENTO / DESC / DELETAR", Color.GRAY.darker(), Color.gray, 1025, 30, 0, 0, 15, false, true),
+			ListComp list = new ListComp(209, 27, 1, 5, new Text("DATA / CLIENTE / QTD E PRODUTO / VALOR TOTAL / VALOR UN / PAGAMENTO / DESC / DELETAR", Color.GRAY.darker(), Color.gray, 1025, 30, 0, 0, 15, false, true),
 			new Text("nenhuma saída foi encontrada!", Color.red.darker().darker(), Color.gray, 1025, 30, 0, 0, 15, false, false));
 			
 			for(Exit exit : Manager.get().getExits()) {
 				List<JComponent> components = new ArrayList<>();
 				components.add(new Text("\n"+exit.getData(), Color.BLACK, Color.gray.darker(), 100, 90, 0, 0, 15, false, true));
 				components.add(new Text(exit.getClient() == null ? "nenhum cliente" : exit.getClient().getName() + " > " + exit.getClient().getCpf() + " > " + exit.getClient().getCnpj(), Color.DARK_GRAY.darker(), Color.gray, 150, 90, 0, 0, 15, false, true));
-				components.add(new Text(exit.getProduct() == null ? "nenhum produto" : exit.getProduct().getName() + " > " + exit.getProduct().getDesc(), Color.DARK_GRAY.darker().darker(), Color.gray, 150, 90, 0, 0, 15, false, true));
+				components.add(new Text(exit.getProduct() == null ? "nenhum produto" : exit.getQuantidade() + "x " + exit.getProduct().getName() + " > " + exit.getProduct().getDesc(), Color.DARK_GRAY.darker().darker(), Color.gray, 150, 90, 0, 0, 15, false, true));
 				components.add(new Text(String.valueOf("R$ "+API.formatValue(exit.getValor())), Color.DARK_GRAY.darker(), Color.gray, 100, 90, 0, 0, 15, false, true));
 				components.add(new Text(String.valueOf("R$ "+API.formatValue(exit.getValorUn())), Color.DARK_GRAY.darker().darker(), Color.gray, 100, 90, 0, 0, 15, false, true));
 				components.add(new Text(exit.getPagamento(), Color.DARK_GRAY.darker(), Color.gray, 100, 90, 0, 0, 15, false, true));

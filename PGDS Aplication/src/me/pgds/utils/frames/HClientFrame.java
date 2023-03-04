@@ -25,7 +25,7 @@ public class HClientFrame extends Frame {
 		super(()->{
 			
 			WindowCore core = WindowCore.getFrame();
-			ListComp list = new ListComp(209, 27, 1, 12, new Text("NOME    /     CPF     /     CNPJ     /     CELULAR     /     TELEFONE     /     DELETAR", Color.GRAY.darker(), Color.gray, 875, 30, 0, 0, 15, false, true),
+			ListComp list = new ListComp(209, 27, 1, 12, new Text("ID    /    NOME    /     CPF     /     CNPJ     /     CELULAR     /     TELEFONE     /     DELETAR", Color.GRAY.darker(), Color.gray, 875, 30, 0, 0, 15, false, true),
 			new Text("nenhum cliente foi encontrado!", Color.red.darker().darker(), Color.gray, 875, 30, 0, 0, 15, false, false));
 			
 			for(Client client : Manager.get().getClients()) {

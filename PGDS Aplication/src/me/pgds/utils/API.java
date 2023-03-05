@@ -14,6 +14,7 @@ import me.pgds.objects.Client;
 import me.pgds.objects.Entry;
 import me.pgds.objects.Exit;
 import me.pgds.objects.Product;
+import me.pgds.objects.managers.Manager;
 
 public class API {
 
@@ -28,6 +29,18 @@ public class API {
 		} catch (Exception e) {
 			return null;
 		}
+	}
+	
+	public static double getValueTotalEntrys() {
+		double valor = 0;
+		for(Entry e : Manager.get().getEntrys()) valor+=e.getValor();
+		return valor;
+	}
+
+	public static double getValueTotalExits() {
+		double valor = 0;
+		for(Exit e : Manager.get().getExits()) valor+=e.getValor();
+		return valor;
 	}
 	
 	public static double formatValue(double valor) {

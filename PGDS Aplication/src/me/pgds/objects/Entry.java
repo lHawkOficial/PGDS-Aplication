@@ -1,6 +1,9 @@
 package me.pgds.objects;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -91,7 +94,11 @@ public class Entry {
 	
 	public void delete() {
 		Manager.get().getEntrys().remove(this);
-		file.delete();
+		try {
+			Files.delete(Paths.get(file.getAbsolutePath()));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 }

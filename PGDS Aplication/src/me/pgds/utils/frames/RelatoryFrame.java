@@ -1,8 +1,25 @@
 package me.pgds.utils.frames;
 
 import java.awt.Color;
+import java.awt.Desktop;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.swing.ImageIcon;
+import javax.swing.JComponent;
+import javax.swing.JOptionPane;
+
+import me.pgds.imgs.ImageAPI;
+import me.pgds.objects.utils.Button;
+import me.pgds.objects.utils.ListComp;
 import me.pgds.objects.utils.Text;
+import me.pgds.objects.utils.TextButton;
+import me.pgds.utils.API;
+import me.pgds.utils.WindowCore;
 import me.pgds.utils.frames.main.Frame;
 
 public class RelatoryFrame extends Frame{
@@ -10,9 +27,6 @@ public class RelatoryFrame extends Frame{
 	public RelatoryFrame(int buttonSelected) {
 		super(()->{
 			
-			new Text("PÁGINA EM DESENVOLVIMENTO", Color.red.darker().darker().darker(), Color.white, 1000, 720, 209, 0, 15, false, false).setOpaque(false);
-			
-			/*
 			WindowCore core = WindowCore.getFrame();
 			ListComp list = new ListComp(209, 27, 1, 10, new Text("ID    /    NOME    /    DELETAR", Color.GRAY.darker(), Color.gray, 300, 30, 0, 0, 15, false, true),
 			new Text("nenhum relatório foi encontrado!", Color.red.darker().darker(), Color.gray, 300, 30, 0, 0, 15, false, false));
@@ -35,6 +49,20 @@ public class RelatoryFrame extends Frame{
 					delete.setIcon(new ImageIcon(ImageAPI.getUtils("lixeira.png")));
 					delete.setOpaque(false);
 					components.add(delete);
+					Button view = new Button(new String(), Color.black, Color.white, 25, 25, 0, 0, 0, new ActionListener() {
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							try {
+								Desktop.getDesktop().open(file);
+							} catch (IOException e1) {
+								JOptionPane.showMessageDialog(null, "Ocorreu um erro ao tentar abrir este arquivo!");
+							}
+							return;
+						}
+					}, core);
+					view.setIcon(new ImageIcon(API.resizeImage(ImageAPI.getUtils("search.png"), 25, 25)));
+					view.setOpaque(false);
+					components.add(view);
 					list.add(components);
 					i++;
 				}
@@ -55,7 +83,6 @@ public class RelatoryFrame extends Frame{
 				API.relatoryAll();
 				core.getRelatory().run();
 			});
-			*/
 			
 		}, buttonSelected);
 	}

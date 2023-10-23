@@ -61,7 +61,20 @@ public class Save implements Serializable {
 	public static List<Object> load(File file) {
 		try {
 			Gson gson = new GsonBuilder().create();
-			return gson.fromJson(new JsonReader(new FileReader(file)), List.class);
+			FileReader reader = new FileReader(file);
+			JsonReader jsonreader = new JsonReader(reader);
+			List<Object> list = gson.fromJson(jsonreader, List.class);
+			try {
+				jsonreader.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			try {
+				reader.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return list;
 		} catch (JsonIOException e) {
 			return new ArrayList<>();
 		} catch (JsonSyntaxException e) {

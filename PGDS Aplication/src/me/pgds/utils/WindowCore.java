@@ -5,8 +5,11 @@ import java.awt.Color;
 
 
 
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Timer;
@@ -40,7 +43,7 @@ import me.pgds.utils.frames.main.KeyListener;
 @Getter
 public class WindowCore extends JFrame {
 	
-	private String version = "v" + 0.1;
+	private String version = "v" + 0.3;
 	private static final long serialVersionUID = -5140442525033186243L;
 	
 	private Color colorBackground = new Color(71,71,71);
@@ -56,6 +59,7 @@ public class WindowCore extends JFrame {
 	@Setter
 	private Timer timer;
 	private Manager manager;
+	private JLabel label;
 	
 	private Frame main,
 	entry, 
@@ -74,11 +78,12 @@ public class WindowCore extends JFrame {
 	public WindowCore() {
 		frame = this;
 		setSize(1280, 720);
-		setResizable(false);
+		setResizable(true);
 		setLayout(null);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setContentPane(new JLabel(new ImageIcon(API.resizeImage(ImageAPI.getUtils("banner.png"), getWidth(), getHeight()))));
+		label = new JLabel(new ImageIcon(API.resizeImage(ImageAPI.getUtils("banner.png"), getWidth(), getHeight())));
+		setContentPane(label);
 		setTitle("PEGADAS PRÉ-MOLDADOS " + version);
 		setIconImage(ImageAPI.getIcon("icon_core.png"));
 		setFocusable(true);
@@ -98,6 +103,24 @@ public class WindowCore extends JFrame {
 		hexit = new HExitFrame(8);
 		relatory = new RelatoryFrame(9);
 		main.run();
+		addComponentListener(new ComponentListener() {
+			
+			@Override
+			public void componentShown(ComponentEvent e) {}
+			
+			@Override
+			public void componentResized(ComponentEvent e) {
+				if (e.getComponent() instanceof JFrame) {
+					label.setIcon(new ImageIcon(API.resizeImage(ImageAPI.getUtils("banner.png"), e.getComponent().getWidth(), e.getComponent().getHeight())));
+				}
+			}
+			
+			@Override
+			public void componentMoved(ComponentEvent e) {}
+			
+			@Override
+			public void componentHidden(ComponentEvent e) {}
+		});
 	}
 	
 	private void createFolders() {

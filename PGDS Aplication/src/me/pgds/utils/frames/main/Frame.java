@@ -1,8 +1,10 @@
 package me.pgds.utils.frames.main;
 
 import lombok.Getter;
+
 import me.pgds.objects.managers.Manager;
 import me.pgds.objects.utils.Button;
+import me.pgds.utils.API;
 import me.pgds.utils.WindowCore;
 
 @Getter
@@ -22,6 +24,7 @@ public class Frame implements FrameImplements {
 	public Frame run() {
 		WindowCore core = WindowCore.getFrame();
 		core.setSelected(this);
+		API.updateOrganizationVariablesManager();
 		new Thread(()-> {
 			if (core.getTimer() != null) {
 				core.getTimer().cancel();

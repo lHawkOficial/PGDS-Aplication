@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import lombok.Getter;
+import lombok.Setter;
 import me.pgds.objects.Client;
 import me.pgds.objects.Entry;
 import me.pgds.objects.Exit;
@@ -13,6 +14,7 @@ import me.pgds.utils.WindowCore;
 import me.pgds.utils.frames.main.Frame;
 
 @Getter
+@Setter
 public class Manager {
 
 	private List<Frame> frames = new ArrayList<>();

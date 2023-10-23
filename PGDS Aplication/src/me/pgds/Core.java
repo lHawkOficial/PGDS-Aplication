@@ -1,4 +1,5 @@
 package me.pgds;
+
 import me.pgds.utils.WindowCore;
 
 public class Core {

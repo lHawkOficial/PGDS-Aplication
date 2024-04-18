@@ -7,7 +7,7 @@
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="C:/Users/Luan Victor/Desktop/servidorM/dependencias/lombok.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Luan Victor/Desktop/Empresa PGDS/Biblioteca Pegadas/gson-2.8.9.jar" sourcepath="C:/Users/LUANVI~1/AppData/Local/Temp/.org.sf.feeling.decompiler1697127200242/source/gson-2.8.9-sources.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Luan Victor/Desktop/Empresa PGDS/Biblioteca Pegadas/itextpdf-5.4.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Luan Victor/Desktop/Biblioteca Pegadas/gson-2.8.9.jar" sourcepath="C:/Users/LUANVI~1/AppData/Local/Temp/.org.sf.feeling.decompiler1697127200242/source/gson-2.8.9-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Luan Victor/Desktop/Biblioteca Pegadas/itextpdf-5.4.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

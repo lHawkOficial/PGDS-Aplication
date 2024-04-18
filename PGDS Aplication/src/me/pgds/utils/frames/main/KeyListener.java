@@ -9,11 +9,16 @@ import me.pgds.utils.WindowCore;
 
 public class KeyListener implements java.awt.event.KeyListener {
 
+	private long wait_time;
+	
 	@Override
 	public void keyTyped(KeyEvent e) {}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
+		if (System.currentTimeMillis()-wait_time >= 10) {
+			wait_time = System.currentTimeMillis();
+		} else return;
 		int id = WindowCore.getFrame().getSelected().getId();
 		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 			WindowCore.getFrame().clear();

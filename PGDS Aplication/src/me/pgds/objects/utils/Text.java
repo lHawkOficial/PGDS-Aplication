@@ -46,6 +46,21 @@ public class Text extends JTextPane {
 		if (animation) addMouseListener(new SelectText(this));
 	}
 	
+	public Text(String text, Color background, Color foreground, int sizeX, int sizeY, int locX, int locY, int sizeFont, boolean editable, boolean animation, JFrame frame, boolean visible) {
+		frame.add(this);
+		setBounds(locX, locY, sizeX, sizeY);
+		setFont(new Font("Arial", 0, sizeFont));
+		setText(text);
+		setEditable(editable);
+		if (foreground != null) setForeground(foreground);
+		if (background != null) setBackground(background);
+		setAutoscrolls(false);
+		setVisible(visible);
+		frame.revalidate();
+		frame.repaint();
+		if (animation) addMouseListener(new SelectText(this));
+	}
+	
 	public void remove() {
 		WindowCore.getFrame().remove(this);
 		WindowCore.getFrame().update();

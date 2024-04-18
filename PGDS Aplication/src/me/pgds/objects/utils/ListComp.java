@@ -56,6 +56,7 @@ public class ListComp {
 	}
 	
 	public void add(List<JComponent> componentsRow) {
+		componentsRow.forEach(comp -> comp.setVisible(false));
 		comps.add(componentsRow);
 	}
 	

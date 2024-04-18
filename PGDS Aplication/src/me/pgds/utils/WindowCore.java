@@ -2,10 +2,6 @@ package me.pgds.utils;
 
 import java.awt.Color;
 
-
-
-
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
@@ -42,39 +38,27 @@ import me.pgds.utils.frames.main.KeyListener;
 
 @Getter
 public class WindowCore extends JFrame {
-	
-	private String version = "v" + 0.3;
+
+	private String version = "v" + 0.4;
 	private static final long serialVersionUID = -5140442525033186243L;
-	
-	private Color colorBackground = new Color(71,71,71);
-	private File folder,
-	folderProducts,
-	folderClients,
-	folderRelatorys;
-	
+
+	private Color colorBackground = new Color(71, 71, 71);
+	private File folder, folderProducts, folderClients, folderRelatorys;
+
 	@Getter
 	private static WindowCore frame;
 	private java.util.List<Button> buttons = new ArrayList<>();
-	
+
 	@Setter
 	private Timer timer;
 	private Manager manager;
 	private JLabel label;
-	
-	private Frame main,
-	entry, 
-	exit,
-	client,
-	products,
-	hprodutcs,
-	hentry,
-	hexit,
-	hclient,
-	relatory;
-	
+
+	private Frame main, entry, exit, client, products, hprodutcs, hentry, hexit, hclient, relatory;
+
 	@Setter
 	private Frame selected;
-	
+
 	public WindowCore() {
 		frame = this;
 		setSize(1280, 720);
@@ -84,7 +68,6 @@ public class WindowCore extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		label = new JLabel(new ImageIcon(API.resizeImage(ImageAPI.getUtils("banner.png"), getWidth(), getHeight())));
 		setContentPane(label);
-		setTitle("PEGADAS PRÉ-MOLDADOS " + version);
 		setIconImage(ImageAPI.getIcon("icon_core.png"));
 		setFocusable(true);
 		requestFocusInWindow();
@@ -104,142 +87,168 @@ public class WindowCore extends JFrame {
 		relatory = new RelatoryFrame(9);
 		main.run();
 		addComponentListener(new ComponentListener() {
-			
+
 			@Override
-			public void componentShown(ComponentEvent e) {}
-			
+			public void componentShown(ComponentEvent e) {
+			}
+
 			@Override
 			public void componentResized(ComponentEvent e) {
 				if (e.getComponent() instanceof JFrame) {
-					label.setIcon(new ImageIcon(API.resizeImage(ImageAPI.getUtils("banner.png"), e.getComponent().getWidth(), e.getComponent().getHeight())));
+					label.setIcon(new ImageIcon(API.resizeImage(ImageAPI.getUtils("banner.png"),
+							e.getComponent().getWidth(), e.getComponent().getHeight())));
 				}
 			}
-			
+
 			@Override
-			public void componentMoved(ComponentEvent e) {}
-			
+			public void componentMoved(ComponentEvent e) {
+			}
+
 			@Override
-			public void componentHidden(ComponentEvent e) {}
+			public void componentHidden(ComponentEvent e) {
+			}
 		});
 	}
-	
+
 	private void createFolders() {
 		folder = new File("pgds_data");
-		if (!folder.exists()) folder.mkdir();
-		
+		if (!folder.exists())
+			folder.mkdir();
+
 		folderProducts = new File(folder + "/produts");
-		if (!folderProducts.exists()) folderProducts.mkdir();
-		
+		if (!folderProducts.exists())
+			folderProducts.mkdir();
+
 		folderClients = new File(folder + "/clients");
-		if (!folderClients.exists()) folderClients.mkdir();
-		
+		if (!folderClients.exists())
+			folderClients.mkdir();
+
 		folderRelatorys = new File(folder + "/relatorys");
-		if (!folderRelatorys.exists()) folderRelatorys.mkdir();
-		
+		if (!folderRelatorys.exists())
+			folderRelatorys.mkdir();
+
 	}
-	
+
 	public WindowCore init() {
 		setVisible(true);
 		update(getGraphics());
 		return this;
 	}
-	
+
 	public void clear() {
 		frame.getContentPane().removeAll();
 		update();
 	}
-	
+
+	private long update_time;
+
 	public void update() {
+		if (System.currentTimeMillis() - update_time >= 10)
+			update_time = System.currentTimeMillis();
+		else return;
 		try {
 			frame.revalidate();
 			frame.repaint();
 		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
-	
+
 	public void defaultIcons() {
-		
+
 		buttons.clear();
 		Color color = new Color(145, 118, 0);
 		int size = 35;
-		List list = new List(1, 2, 2,new Button("início", color, Color.white, 200, size, 2, 2, 15, new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Button button = (Button) e.getSource();
-				if (button.getSelected()) return;
-				main.run();
-			}
-		}),new Button("nova entrada", color, Color.white, 200, size, 2, 2, 15, new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Button button = (Button) e.getSource();
-				if (button.getSelected()) return;
-				entry.run();
-			}
-		}),new Button("nova saida", color, Color.white, 200, size, 2, 2, 15, new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Button button = (Button) e.getSource();
-				if (button.getSelected()) return;
-				exit.run();
-			}
-		}),new Button("novo cliente", color, Color.white, 200, size, 2, 2, 15, new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Button button = (Button) e.getSource();
-				if (button.getSelected()) return;
-				client.run();
-			}
-		}),new Button("novo produto", color, Color.white, 200, size, 2, 2, 15, new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Button button = (Button) e.getSource();
-				if (button.getSelected()) return;
-				products.run();
-			}
-		}),new Button("produtos", color, Color.white, 200, size, 2, 2, 15, new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Button button = (Button) e.getSource();
-				if (button.getSelected()) return;
-				hprodutcs.run();
-			}
-		}),new Button("clientes", color, Color.white, 200, size, 2, 2, 15, new ActionListener() {
+		List list = new List(1, 2, 2,
+				new Button("início", color, Color.white, 200, size, 2, 2, 15, new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						Button button = (Button) e.getSource();
-						if (button.getSelected()) return;
+						if (button.getSelected())
+							return;
+						main.run();
+					}
+				}), new Button("nova entrada", color, Color.white, 200, size, 2, 2, 15, new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						Button button = (Button) e.getSource();
+						if (button.getSelected())
+							return;
+						entry.run();
+					}
+				}), new Button("nova saida", color, Color.white, 200, size, 2, 2, 15, new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						Button button = (Button) e.getSource();
+						if (button.getSelected())
+							return;
+						exit.run();
+					}
+				}), new Button("novo cliente", color, Color.white, 200, size, 2, 2, 15, new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						Button button = (Button) e.getSource();
+						if (button.getSelected())
+							return;
+						client.run();
+					}
+				}), new Button("novo produto", color, Color.white, 200, size, 2, 2, 15, new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						Button button = (Button) e.getSource();
+						if (button.getSelected())
+							return;
+						products.run();
+					}
+				}), new Button("produtos", color, Color.white, 200, size, 2, 2, 15, new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						Button button = (Button) e.getSource();
+						if (button.getSelected())
+							return;
+						hprodutcs.run();
+					}
+				}), new Button("clientes", color, Color.white, 200, size, 2, 2, 15, new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						Button button = (Button) e.getSource();
+						if (button.getSelected())
+							return;
 						hclient.run();
 					}
-		}),new Button("entradas", color, Color.white, 200, size, 2, 2, 15, new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Button button = (Button) e.getSource();
-				if (button.getSelected()) return;
-				hentry.run();
-			}
-		}),new Button("saídas", color, Color.white, 200, size, 2, 2, 15, new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Button button = (Button) e.getSource();
-				if (button.getSelected()) return;
-				hexit.run();
-			}
-		}),new Button("relatórios", color, Color.white, 200, size, 2, 2, 15, new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Button button = (Button) e.getSource();
-				if (button.getSelected()) return;
-				relatory.run();
-			}
-		})).build();
-		for(JComponent component : list.getObjects()) {
-			if (!(component instanceof Button)) continue;
+				}), new Button("entradas", color, Color.white, 200, size, 2, 2, 15, new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						Button button = (Button) e.getSource();
+						if (button.getSelected())
+							return;
+						hentry.run();
+					}
+				}), new Button("saídas", color, Color.white, 200, size, 2, 2, 15, new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						Button button = (Button) e.getSource();
+						if (button.getSelected())
+							return;
+						hexit.run();
+					}
+				}), new Button("relatórios", color, Color.white, 200, size, 2, 2, 15, new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						Button button = (Button) e.getSource();
+						if (button.getSelected())
+							return;
+						relatory.run();
+					}
+				})).build();
+		for (JComponent component : list.getObjects()) {
+			if (!(component instanceof Button))
+				continue;
 			buttons.add((Button) component);
 		}
 		new Draw(203, 0, 3, 720, colorBackground);
 		Text vs = new Text("🔧 " + version, Color.black, Color.white, 200, 25, 2, 655, 16, false, false);
 		vs.setOpaque(true);
 	}
-			
+
 }
